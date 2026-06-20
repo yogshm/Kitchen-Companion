@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with system metadata",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "email"]
+    },
+    "MealPlan": {
+      "title": "MealPlan",
+      "description": "AI generated meal plan matching user preferences and schedules",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "peopleCount": { "type": "number" },
+        "workSchedule": { "type": "string" },
+        "busyDay": { "type": "boolean" },
+        "availableTime": { "type": "number" },
+        "budget": { "type": "number" },
+        "dietType": { "type": "string" },
+        "activityLevel": { "type": "string" },
+        "ingredients": { "type": "string" },
+        "likes": { "type": "string" },
+        "dislikes": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "WaterLog": {
+      "title": "WaterLog",
+      "description": "Daily logged water intake for tracking hydration progress",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "date": { "type": "string" },
+        "amountMl": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "date", "amountMl"]
+    }
+  },
+  "firestore": {
+    "/profiles/{userId}": {
+      "schema": "UserProfile",
+      "description": "Registered profile metadata of chef"
+    },
+    "/meal_plans/{planId}": {
+      "schema": "MealPlan",
+      "description": "Core documents for saving AI culinary configurations"
+    },
+    "/water_logs/{logId}": {
+      "schema": "WaterLog",
+      "description": "Daily logs of tracked hydration volumes"
+    }
+  }
+}
